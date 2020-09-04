@@ -70,18 +70,14 @@ async def blink(canvas, row, column, symbol='*'):
 
 async def animate_spaceship(canvas, frame_row, frame_column, frame_1, frame_2):
     draw_frame(canvas, frame_row, frame_column, frame_1)
-    canvas.refresh()
     await asyncio.sleep(0)
 
     draw_frame(canvas, frame_row, frame_column, frame_1, negative=True)
     draw_frame(canvas, frame_row, frame_column, frame_2)
-    canvas.refresh()
     await asyncio.sleep(0)
 
     draw_frame(canvas, frame_row, frame_column, frame_2, negative=True)
     draw_frame(canvas, frame_row, frame_column, frame_1)
-    canvas.refresh()
-
 
 
 def draw(canvas):
@@ -117,6 +113,7 @@ def draw(canvas):
     for coroutine in cycle(coroutines.copy()):
         try:
             spaceship.send(None)
+            canvas.refresh()
         except StopIteration:
             row, column, space = read_controls(canvas)
             if row != 0 or column != 0:
@@ -124,10 +121,8 @@ def draw(canvas):
             start_rows = start_rows + row
             start_columns = start_columns + column
             spaceship = animate_spaceship(canvas, start_rows, start_columns, frame_1, frame_2)
-
         try:
             coroutine.send(None)
-            canvas.refresh()
             time.sleep(0.1)
         except StopIteration:
             coroutines.remove(coroutine)
