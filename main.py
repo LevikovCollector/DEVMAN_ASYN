@@ -84,21 +84,23 @@ def draw(canvas):
     canvas.border('|', '|')
     curses.curs_set(False)
     canvas.nodelay(True)
-    max_y, max_x = canvas.getmaxyx()
+    max_row, max_column = canvas.getmaxyx()
     coroutines = []
     symbols_for_star = ['+', '*', '.', ':']
-    start_rows = int(max_y / 2)
-    start_columns =  int (max_x / 2)
+    start_rows = int(max_row / 2)
+    start_columns =  int (max_column / 2)
     fire_coroutine = fire(canvas, start_rows,start_columns)
     with open('./frames/rocket_frame_1.txt', 'r') as frame:
         frame_1 = frame.read()
     with open('./frames/rocket_frame_2.txt', 'r') as frame:
         frame_2 = frame.read()
 
+    frame_row, frame_column = get_frame_size(frame_1)
+
     spaceship = animate_spaceship(canvas, start_rows, start_columns, frame_1, frame_2)
     for star_count in range(1, 200):
-        column = random.randint(1, max_x-5)
-        row = random.randint(1, max_y-5)
+        column = random.randint(1, max_column-5)
+        row = random.randint(1, max_row-5)
         symbol = random.choice(symbols_for_star)
         coroutines.append(blink(canvas,row, column, symbol))
 
@@ -118,8 +120,10 @@ def draw(canvas):
             row, column, space = read_controls(canvas)
             if row != 0 or column != 0:
                 draw_frame(canvas, start_rows, start_columns, frame_1, negative=True)
+
             start_rows = start_rows + row
             start_columns = start_columns + column
+
             spaceship = animate_spaceship(canvas, start_rows, start_columns, frame_1, frame_2)
         try:
             coroutine.send(None)
