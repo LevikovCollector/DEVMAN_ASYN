@@ -120,9 +120,14 @@ def draw(canvas):
             row, column, space = read_controls(canvas)
             if row != 0 or column != 0:
                 draw_frame(canvas, start_rows, start_columns, frame_1, negative=True)
+            raw_row =  start_rows + row
+            raw_column = start_columns + column
 
-            start_rows = start_rows + row
-            start_columns = start_columns + column
+            if 0 < raw_row < max_row - frame_row:
+                start_rows = raw_row
+
+            if 0 <  raw_column < max_column - frame_column:
+                start_columns = raw_column
 
             spaceship = animate_spaceship(canvas, start_rows, start_columns, frame_1, frame_2)
         try:
