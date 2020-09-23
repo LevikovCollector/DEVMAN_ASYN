@@ -11,3 +11,4 @@ python main.py
 Пример запуска программы
 
 ![](https://drive.google.com/uc?export=view&id=1s2rtLtT4eiQPWq75mjWKdZiJar7S_coj)
+
