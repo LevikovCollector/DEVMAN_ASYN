@@ -10,5 +10,5 @@ python main.py
 ```
 Пример запуска программы
 
-![Ссылка на картинку](https://drive.google.com/file/d/1ZpEpBncvd09m4UvOA6gpKViq2THuTMFZ/view?usp=sharing)
+[Ссылка на картинку](https://drive.google.com/file/d/1ZpEpBncvd09m4UvOA6gpKViq2THuTMFZ/view?usp=sharing)
 
