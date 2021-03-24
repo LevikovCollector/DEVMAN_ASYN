@@ -9,4 +9,4 @@
 python main.py
 ```
 Пример запуска программы.
-![](https://drive.google.com/uc?export=view&id=1ZpEpBncvd09m4UvOA6gpKViq2THuTMFZ)
+![](https://github.com/LevikovCollector/DEVMAN_ASYN/blob/Space_lesson/img_for_git/1.jpg)
